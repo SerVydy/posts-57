@@ -7,6 +7,7 @@
     <title>{{ $title }}</title>
     @vite('resources/css/app.css')
 </head>
+
 <body class="flex flex-col h-screen">
     <header>
         <x-header.a href="{{ route('home') }}">Home</x-header.a>

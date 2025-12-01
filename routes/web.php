@@ -7,6 +7,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/page1', function () {
+    
+
     return view('page1');
 })->name('page1');
 
