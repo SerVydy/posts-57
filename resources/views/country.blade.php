@@ -1,8 +1,24 @@
 <x-layout title="country">
     <x-ui.section title="country">
-        <div>
-            <input type="text" name="count" class="border">
-            <x-ui.button>Paginate</x-ui.button>
+        <div class="flex justify-between">
+            <form action="">
+                {{-- <input type="text" name="count" class="border" value="{{ $count}}"> --}}
+                <select name="count" >
+                    @foreach ($list_count as $item)
+                        @if ($count == $item)
+                           <option selected value="{{$item}}">{{$item}}</option> 
+                        @else
+                            <option value="{{$item}}">{{$item}}</option> 
+                        @endif
+                        
+                    @endforeach
+                </select>
+                <x-ui.button>Paginate</x-ui.button>
+            </form>
+            <form action="">
+                <input type="text" name="search" placeholder="Search" value="{{$search}}">
+                <x-ui.button>Search</x-ui.button>
+            </form>
         </div>
 
         @if (count($countries) < 1)
@@ -23,7 +39,7 @@
                             <td class="py-1">{{ $country->id }}</td>
                             <td>{{ $country->name }}</td>
                             <td class="grid grid-cols-[20px_3vw_20px] gap-x-1 items-center justify-center">
-                                <x-form.form action="{{ route('country.increment',$country)}} ">
+                                <x-form.form action="{{ route('country.decrement',$country)}} ">
                                     <x-ui.button type="submit"> - </x-ui.button>
                                 </x-form.form>
                                 <span class="text-center">{{ $country->top }}</span>

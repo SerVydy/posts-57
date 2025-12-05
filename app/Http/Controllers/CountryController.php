@@ -9,11 +9,29 @@ class CountryController extends Controller
 {
     public function index(Request $request)
     {
+        $list_count = [5,10,15,25,50];
         $current_page = '';
         $count = $request->count;
-        dump($request->all());
-        $countries = Country::paginate(10);
-        return view('country', compact('countries', 'count'));
+        if(!isset($request->count)){
+            $count = 15;
+        }
+        $search = $request->search;
+        if(!isset($request->search)){
+            $search = '';
+        }
+        
+        $countries = Country::query()
+        ->where('name','like','%'.$search.'%')
+        ->paginate($count);
+        return view('country', compact('countries', 'count','list_count','search'));
+    }
+
+    public function increment(Country $country, Request $request)
+    {
+        $country->update([
+           'top' => $country->top + 1,
+        ]);
+        return to_route('country.index');
     }
 
     public function decrement(Country $country, Request $request)
