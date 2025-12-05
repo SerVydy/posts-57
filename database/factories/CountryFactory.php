@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Country;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Request;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Country>
@@ -21,4 +23,8 @@ class CountryFactory extends Factory
             'top' => fake()->numberBetween(1,100),
         ];
     }
+
+
+
+
 }
